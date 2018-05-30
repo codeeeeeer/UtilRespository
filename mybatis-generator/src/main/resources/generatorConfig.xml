@@ -4,15 +4,20 @@
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
+	<properties resource="jdbc.properties" />
 	<context id="testTables" targetRuntime="MyBatis3">
+		<!-- 生成的pojo，将implements Serializable-->
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
 		<commentGenerator>
 			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
 			<property name="suppressAllComments" value="true" />
 		</commentGenerator>
 		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
-		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost:3306/micromall_db01" userId="root"
-			password="root">
+		<!-- 数据库链接URL、用户名、密码 -->
+		<jdbcConnection driverClass="${jdbc.driver}"
+						connectionURL="${jdbc.url}"
+						userId="${jdbc.username}"
+						password="${jdbc.password}">
 		</jdbcConnection>
 		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和 
 			NUMERIC 类型解析为java.math.BigDecimal -->
