@@ -1,0 +1,1 @@
+逆向生成java文件和xml文件，只要运行GeneratorSqlmap.java中的主方法即可。
