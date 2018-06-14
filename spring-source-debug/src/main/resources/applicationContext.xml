@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.2.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+    <context:annotation-config/>
+    <bean id="student" class="com.test.beans.Student">
+        <constructor-arg name="name" value="Mike"/>
+        <constructor-arg index="1" value="18"/>
+        <constructor-arg type="java.lang.Double" value="129.5"/>
+    </bean>
+
+    <bean id="student2" class="com.test.beans.Student">
+        <constructor-arg name="name" value="Jack"/>
+        <constructor-arg index="1" value="20"/>
+        <constructor-arg type="java.lang.Double" value="131.5"/>
+    </bean>
+
+    <bean id="teacher" class="com.test.beans.Teacher">
+        <property name="name" value="John"/>
+        <property name="age" value="33"/>
+        <constructor-arg name="students">
+            <list>
+                <bean class="com.test.beans.Student">
+                    <constructor-arg name="name" value="Harry"/>
+                    <constructor-arg name="age" value=" 32 "/>
+                </bean>
+                <bean class="com.test.beans.Student">
+                    <constructor-arg name="name" value="Lion"/>
+                    <constructor-arg index="1" value="25"/>
+                    <constructor-arg type="java.lang.Double" value="139"/>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+    
+    <bean class="com.test.beans.Master">
+        <property name="name" value="Jeffery"/>
+        <property name="age" value="56"/>
+        <property name="teachers">
+            <set>
+                <bean class="com.test.beans.Teacher">
+                    <property name="name" value="Molly"/>
+                    <property name="age" value="35"/>
+                    <constructor-arg name="students">
+                        <list>
+                            <bean class="com.test.beans.Student">
+                                <constructor-arg name="name" value="Alone"/>
+                                <constructor-arg name="age" value=" 16 "/>
+                            </bean>
+                            <bean class="com.test.beans.Student">
+                                <constructor-arg name="name" value="Tim"/>
+                                <constructor-arg index="1" value="21"/>
+                                <constructor-arg type="java.lang.Double" value="154"/>
+                            </bean>
+                        </list>
+                    </constructor-arg>
+                </bean>
+            </set>
+        </property>
+    </bean>
+
+    <bean class="com.test.beans.HelperImpl"/>
+</beans>
