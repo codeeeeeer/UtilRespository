@@ -12,6 +12,7 @@
         <module>jedis-test</module>
         <module>spring-source-debug</module>
         <module>activemq</module>
+        <module>FieldValidator</module>
     </modules>
     <packaging>pom</packaging>
     <properties>

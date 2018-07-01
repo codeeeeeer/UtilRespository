@@ -16,7 +16,7 @@
         http://www.springframework.org/schema/util
         http://www.springframework.org/schema/util/spring-util-4.2.xsd">
     <context:annotation-config/>
-    <bean id="student" class="com.test.beans.Student">
+   <!-- <bean id="student" class="com.test.beans.Student">
         <constructor-arg name="name" value="Mike"/>
         <constructor-arg index="1" value="18"/>
         <constructor-arg type="java.lang.Double" value="129.5"/>
@@ -73,4 +73,8 @@
     </bean>
 
     <bean class="com.test.beans.HelperImpl"/>
+-->
+    <bean id="beforeAopTest01" class="com.test.actions.BeforeAopTest"/>
+
+    <bean id="userService" class="com.test.actions.interfaces.impl.UserServiceImpl"/>
 </beans>
