@@ -8,22 +8,20 @@ import com.lh708.rule.AbstractValidationRule;
  * 〈〉
  *
  * @author LewJay
- * @create 2018/6/30 8:56
+ * @create 2018/7/2 20:26
  */
-public class CumulativeValidator<I> extends AbstractValidator<I> {
-    public CumulativeValidator(IField<I> field) {
+public class OneOffValidator<I> extends AbstractValidator<I> {
+    public OneOffValidator(IField<I> field) {
         super(field);
     }
-
     public boolean validate(I input, ResultContainer output) {
-        boolean flag = true;
         for (AbstractValidationRule<I> rule:
                 this.rules) {
-            if ( ! rule.validate(input)){
-                flag = false;
+            if (rule.validate(input)){
                 output.addResult(rule.getErrorMsg());
+                return false;
             }
         }
-        return flag;
+        return true;
     }
 }

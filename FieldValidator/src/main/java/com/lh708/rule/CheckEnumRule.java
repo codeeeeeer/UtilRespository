@@ -2,9 +2,9 @@ package com.lh708.rule;
 
 import com.lh708.field.IEnum;
 import com.lh708.field.IField;
-import com.lh708.result.ValidationResultHolder;
-import com.lh708.util.ValidationUtil;
+import com.lh708.common.ValidationUtil;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,16 +14,15 @@ import java.util.List;
  * @author LewJay
  * @create 2018/6/30 9:02
  */
-public class CheckEnumRule<I, O extends ValidationResultHolder> implements IValidationRule<I, O> {
-    private IField<I, O> field = null;
-    private String errorMsg = null;
+public class CheckEnumRule<I> extends AbstractValidationRule<I> {
 
-    public CheckEnumRule(IField<I, O> field) {
-        this.field = field;
-        this.errorMsg = String.format("%s must be one of the values %s", field.getName(), Arrays.asList(this.field.getEnums()));
+    public CheckEnumRule(IField<I> field) {
+        super(field);
+        this.errorMsg = String.format("%s must be one of the values %s", field.getName(), getEnumValues());
     }
 
-    public boolean validate(I input, O output) {
+    @Override
+    public boolean validate(I input) {
         Object value = this.field.getValue(input);
         if (ValidationUtil.isEmpty(value)) {
             return true;
@@ -41,7 +40,12 @@ public class CheckEnumRule<I, O extends ValidationResultHolder> implements IVali
         return false;
     }
 
-    public String getErrorMsg() {
-        return this.errorMsg;
+    private List<String> getEnumValues(){
+        List<String> result = new ArrayList<String>();
+        for (IEnum enumValue:
+            this.field.getEnums()) {
+            result.add(enumValue.getValue());
+        }
+        return result;
     }
 }
