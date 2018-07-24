@@ -12,7 +12,8 @@
         <module>jedis-test</module>
         <module>spring-source-debug</module>
         <module>activemq</module>
-        <module>FieldValidator</module>
+        <module>page-helper-test</module>
+        <module>SpringBatchTest</module>
     </modules>
     <packaging>pom</packaging>
     <properties>
@@ -49,10 +50,16 @@
         <quartz.version>2.2.2</quartz.version>
         <lombok.version>1.16.20</lombok.version>
         <fastdfs-client.version>1.25</fastdfs-client.version>
+        <spring-batch.version>4.0.1.RELEASE</spring-batch.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.batch</groupId>
+                <artifactId>spring-batch-core</artifactId>
+                <version>${spring-batch.version}</version>
+            </dependency>
             <!-- mybatis-generator -->
             <dependency>
                 <groupId>org.mybatis.generator</groupId>
@@ -199,6 +206,12 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context-support</artifactId>
                 <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+                <scope>test</scope>
             </dependency>
             <!-- JSP相关 -->
             <dependency>
